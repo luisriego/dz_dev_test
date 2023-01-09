@@ -1,15 +1,7 @@
-# docker-dev-env-for-symfony
-(Cloned from @juanwilde github)
-
-This repository contains the basic configuration for a complete local environment for Symfony projects
-
 ### Content:
 - NGINX 1.19 container to handle HTTP requests
 - PHP 8.1.1 container to host your Symfony application
 - MySQL 8.0 container to store databases
-- Postgres 14 container to store databases
-
-(feel free to update any version in `Dockerfiles` and ports in `docker-compose.yml`)
 
 ### Installation:
 - Run `make build` to create all containers
@@ -34,22 +26,6 @@ This repository contains the basic configuration for a complete local environmen
 - Remove `project` folder (not needed anymore)
 - Navigate to `localhost:1000` so you can see the Symfony welcome page :)
 
-
-.env configuration by orm and rabbitmq
-
-    ###> doctrine/doctrine-bundle ###
-    # DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
-    #DATABASE_URL="mysql://root:root@codenip-php81-symfony54-mysql:3306/mysql_symfony?serverVersion=8.0"
-    DATABASE_URL="postgresql://user:passwd@codenip-php81-symfony54-postgres:5432/postgres_symfony?serverVersion=14&charset=utf8"
-    ###< doctrine/doctrine-bundle ###
-    
-    ###> symfony/messenger ###
-    # Choose one of the transports below
-    # MESSENGER_TRANSPORT_DSN=doctrine://default
-    MESSENGER_TRANSPORT_DSN=amqp://guest:guest@docker-dev-env-for-symfony-rabbitmq:5672/%2f/messages
-    # MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages
-    ###< symfony/messenger ###
-
 Happy coding!
 
 ### For testing
@@ -58,42 +34,40 @@ Happy coding!
 
 composer dump-autoload --- when not found files after rename it
 
-If .pem has access problems: 'chmod 644 public.pem private.pem'
+Olá, Luís.
 
-#### To php cs-fixer
-to install:
-    
-    composer require --dev friendsofphp/php-cs-fixer
-to exec:
+Obrigado por se interessar em fazer parte da nossa equipe. O processo seletivo da vaga envolve três etapas:
 
-    vendor/bin/php-cs-fixer fix src
+1) Avaliação da Competência Técnica
+2) Entrevista Técnica via Google Meet
+3) Entrevista Financeira via Google Meet
 
-### SQL Try
-https://stackoverflow.com/questions/68380201/booking-system-using-query-builder-and-symfony
+Estou te enviando abaixo as informações referente à Avaliação da Competência Técnica.
 
-```
-$subQueryBuilder = $this->getEntityManager()->createQueryBuilder();
-        $subQuery = $subQueryBuilder
-            ->select('prop.id')
-            ->from('App:Reservation', 'reservation')
-            ->orWhere('reservation.startDate BETWEEN :checkInDate AND :checkOutDate')
-            ->orWhere('reservation.endDate BETWEEN :checkInDate AND :checkOutDate')
-            ->orWhere('reservation.startDate <= :checkInDate AND reservation.endDate >= :checkOutDate')
-            ->andWhere('reservation.confirmedAt IS NOT NULL')
-            ->andWhere('reservation.rating IS NULL')
-            ->innerJoin('reservation.property', 'prop')
-        ;
-        
-  $properties = $this->createQueryBuilder('p')
-        ->select('p')
-        ->andWhere('p.approved = 1')
-        ->andWhere($properties->expr()->notIn('p.id',  $subQuery->getDQL()))
-        ->andWhere('reservations.confirmedAt IS NOT NULL')
-        ->andWhere('reservations.rating IS NULL')
-        ->setParameter('checkInDate', new \DateTime($checkIn))
-        ->setParameter('checkOutDate', new \DateTime($checkOut))
-        ->innerJoin('p.reservations', 'reservations')
-        ->getQuery();
-```
+AVALIAÇÃO DA COMPETÊNCIA TÉCNICA
 
+1. Entrega Obrigatória
 
+Utilizando a linguagem PHP, a partir do banco de dados fornecido, liste em uma tabela HTML apenas as mulheres com idade superior a 20 anos.
+
+- Nesta lista deverá conter o nome, sexo, CPF, data de nascimento, e-mail, celular e profissão.
+
+- É permitido a utilização de frameworks para estilização da lista.
+
+2. Entrega Desejável
+
+Crie as ações de incluir novos registros, editar e excluir registros listados na tabela HTML.
+
+Prazo Limite para Entrega:
+12/01 (quinta-feira) às 10:00
+
+Banco de Dados
+
+Host: 107.180.57.185
+DB: dz_dev_test
+Usuário: dz_dev
+Senha: p?%3DY?#*LBW
+
+Estamos à disposição.
+
+Obrigado.
